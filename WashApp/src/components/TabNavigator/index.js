@@ -10,8 +10,8 @@ export default function TabNavigator() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        labelStyle: { fontSize: 12 },
-        tabStyle: { width: 100 },
+        labelStyle: { fontSize: 18 },
+        tabStyle: { width: '100%' },
         style: { backgroundColor: 'powderblue' },
       }}>
       <Tab.Screen name="Login" component={Login} />

@@ -5,5 +5,26 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.primary,
-  }
+  },
+  form: {
+    flex: 1,
+    justifyContent: 'center',
+    margin: 30,
+  },
+  title: {
+    fontSize: 36,
+    marginBottom: 20,
+    fontWeight: 'bold',
+    color: colors.font,
+  },
+  label: {
+    fontSize: 18,
+    color: colors.font,
+  },
+  textInput: {
+    borderBottomWidth: 0.3,
+    borderColor: colors.black,
+    color: colors.font,
+    borderRadius: 5
+  },
 });

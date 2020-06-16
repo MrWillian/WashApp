@@ -1,11 +1,29 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import TabNavigator from '../../components/TabNavigator';
+import { View, Text } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+import Login from '../../screens/Login';
+import Register from '../../screens/Register';
+
+const Tab = createMaterialTopTabNavigator();
 
 export default function LoginContainer() {
   return (
-    <SafeAreaView>
-      <TabNavigator />
-    </SafeAreaView>
+    <View>
+      <Tab.Navigator
+        initialRouteName="Login"
+        tabBarOptions={{
+          activeTintColor: '#e91e63',
+          labelStyle: { fontSize: 12 },
+          style: { backgroundColor: 'powderblue' },
+        }}>
+        
+        <Tab.Screen name="Login" component={Login} options={{ tabBarLabel: 'Login' }} />
+        <Tab.Screen name="Register" component={Register} options={{ tabBarLabel: 'Registrar' }} />
+      
+      </Tab.Navigator>
+
+      <Text>Teste</Text>
+    </View>
   );
 }

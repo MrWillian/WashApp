@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, TextInput, Text } from 'react-native';
+import { SafeAreaView, View, TouchableOpacity, TextInput, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+import Header from '../../components/Header';
 import BottomScreen from '../../components/BottomScreen';
-import Button from '../../components/Button';
+import ActionButton from '../../components/ActionButton';
 
 import styles from './styles';
 
-export default function Login() {
+export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [cellPhone, setCellPhone] = useState('');
+  const navigation = useNavigation();
+
+  function toRegisterCompany() { navigation.navigate('RegisterCompany'); }
 
   return (
     <SafeAreaView style={styles.container}>
+
+      <Header activeScreen="Register" />
 
       <View style={styles.form}>
         <Text style={styles.title}>Olá, entre com os seus dados...</Text>
@@ -22,6 +30,7 @@ export default function Login() {
         <TextInput 
           style={styles.textInput} 
           value={name} 
+          autoFocus={true}
           placeholder="Digite seu nome..."
           onChangeText={name => setName(name)} />
 
@@ -55,10 +64,17 @@ export default function Login() {
           placeholder="Digite seu celular..."
           onChangeText={cellPhone => setCellPhone(cellPhone)}
           secureTextEntry={true} />
+        
+        <TouchableOpacity onPress={toRegisterCompany}>
+          <Text style={styles.registerCompany}>
+            Cadastrar como prestador de serviços...
+          </Text>
+        </TouchableOpacity>
+        
       </View>
 
       <BottomScreen />
-      <Button />
+      <ActionButton />
     </SafeAreaView>
   );
 }

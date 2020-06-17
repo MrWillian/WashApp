@@ -12,7 +12,7 @@ export default StyleSheet.create({
     margin: 30,
   },
   title: {
-    fontSize: 36,
+    fontSize: 24,
     marginBottom: 20,
     fontWeight: 'bold',
     color: colors.font,
@@ -26,5 +26,10 @@ export default StyleSheet.create({
     borderColor: colors.black,
     color: colors.font,
     borderRadius: 5
+  },
+  forgotPassword: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: colors.accent,
   },
 });

@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 
 import CompanyList from '../../components/CompanyList';
 import BottomScreen from '../../components/BottomScreen';
+import LogoutButton from '../../components/LogoutButton';
 import FabButton from '../../components/FabButton';
 
 import { useRoute } from '@react-navigation/native';
@@ -21,7 +22,11 @@ export default function Home() {
     <View style={styles.container}>
 
       <View style={styles.contentContainer}>
-      <Text style={styles.title}>Olá, {user.name}</Text>
+
+        <View style={styles.header}>
+          <Text style={styles.title}>Olá, {user.name}</Text>
+          <LogoutButton />
+        </View>
         
         <CompanyList />
 

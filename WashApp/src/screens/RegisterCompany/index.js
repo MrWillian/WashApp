@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, TouchableOpacity, TextInput, Text } from 'react-native';
+import { SafeAreaView, View, TextInput, Text, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import Header from '../../components/Header';
 import BottomScreen from '../../components/BottomScreen';
 import ActionButton from '../../components/ActionButton';
+
+import { registerUserCompany } from '../../controllers/RegisterController';
 
 import styles from './styles';
 
@@ -13,6 +17,20 @@ export default function RegisterCompany() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [cellPhone, setCellPhone] = useState('');
   const [tellPhone, setTellPhone] = useState('');
+
+  const navigation = useNavigation();
+
+  async function handleRegister() {
+    const response = await registerUserCompany(name, email, password, cellPhone, tellPhone);
+    if (!response) {
+      Alert.alert('Erro', 'Ocorreu um erro ao tentar se registrar, tente novamente!', [
+        { test: "Cancelar", style: "cancel" }
+      ]);
+      return;
+    }
+    
+    navigation.navigate('Home', response);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -58,20 +76,18 @@ export default function RegisterCompany() {
           style={styles.textInput} 
           value={cellPhone}
           placeholder="Digite seu celular..."
-          onChangeText={cellPhone => setCellPhone(cellPhone)}
-          secureTextEntry={true} />
+          onChangeText={cellPhone => setCellPhone(cellPhone)} />
         
         <Text style={styles.label}>Telefone</Text>
         <TextInput 
           style={styles.textInput} 
           value={tellPhone}
           placeholder="Digite seu telefone..."
-          onChangeText={tellPhone => setTellPhone(tellPhone)}
-          secureTextEntry={true} />
+          onChangeText={tellPhone => setTellPhone(tellPhone)} />
       </View>
 
       <BottomScreen />
-      <ActionButton />
+      <ActionButton handleButton={handleRegister} />
     </SafeAreaView>
   );
 }

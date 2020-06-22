@@ -13,5 +13,9 @@ module.exports = {
     } catch(error) {
       return;
     }
+  },
+
+  async removeItem(key) {
+    storage.removeItem(key);
   }
 };

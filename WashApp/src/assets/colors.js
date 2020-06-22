@@ -9,6 +9,8 @@ export default colors = {
   cinza2: '#C4C4C4',
   cinza3: '#4E4C63',
 
+  red: 'red',
+
   white: '#FFF',
   black: '#000',
 }

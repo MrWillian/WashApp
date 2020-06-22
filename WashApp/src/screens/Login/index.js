@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { SafeAreaView, View, TextInput, Text, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, View, TextInput, Text, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import Header from '../../components/Header';
 import BottomScreen from '../../components/BottomScreen';
 import ActionButton from '../../components/ActionButton';
+
+import { login } from '../../controllers/LoginController';
+import { save, load } from '../../controllers/StorageController';
 
 import styles from './styles';
 
@@ -14,7 +17,30 @@ export default function Login() {
 
   const navigation = useNavigation();
 
-  async function handleLogin() { navigation.navigate('Home'); }
+  useEffect(() => {
+    async function loadUser() {
+      await load('userSession')
+        .then(user => { navigation.navigate('Home', user); })
+        .catch(err => { console.log(err.message); })
+    }
+
+    loadUser();
+  }, []);
+
+  async function handleLogin() { 
+    const user = await login(email, password);
+
+    if (!user) {
+      Alert.alert('Erro', 'Ocorreu um erro ao tentar se autenticar, tente novamente!', [
+        { test: "Cancelar", style: "cancel" }
+      ]);
+      return;
+    }
+
+    await save('userSession', user);
+    
+    navigation.navigate('Home', user); 
+  }
 
   return (
     <SafeAreaView style={styles.container}>

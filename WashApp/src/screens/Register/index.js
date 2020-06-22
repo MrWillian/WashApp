@@ -6,6 +6,8 @@ import Header from '../../components/Header';
 import BottomScreen from '../../components/BottomScreen';
 import ActionButton from '../../components/ActionButton';
 
+import { registerUserClient } from '../../controllers/RegisterController';
+
 import styles from './styles';
 
 export default function Register() {
@@ -14,7 +16,20 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [cellPhone, setCellPhone] = useState('');
+  
   const navigation = useNavigation();
+
+  async function handleRegister() {
+    const response = await registerUserClient(name, email, password, cellPhone);
+    if (!response) {
+      Alert.alert('Erro', 'Ocorreu um erro ao tentar se registrar, tente novamente!', [
+        { test: "Cancelar", style: "cancel" }
+      ]);
+      return;
+    }
+    
+    navigation.navigate('Home', response);
+  }
 
   function toRegisterCompany() { navigation.navigate('RegisterCompany'); }
 
@@ -62,8 +77,7 @@ export default function Register() {
           style={styles.textInput} 
           value={cellPhone}
           placeholder="Digite seu celular..."
-          onChangeText={cellPhone => setCellPhone(cellPhone)}
-          secureTextEntry={true} />
+          onChangeText={cellPhone => setCellPhone(cellPhone)} />
         
         <TouchableOpacity onPress={toRegisterCompany}>
           <Text style={styles.registerCompany}>
@@ -74,7 +88,7 @@ export default function Register() {
       </View>
 
       <BottomScreen />
-      <ActionButton />
+      <ActionButton handleButton={handleRegister} />
     </SafeAreaView>
   );
 }

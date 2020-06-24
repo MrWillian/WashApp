@@ -20,7 +20,11 @@ export default function Login() {
   useEffect(() => {
     async function loadUser() {
       await load('userSession')
-        .then(user => { navigation.navigate('Home', user); })
+        .then(user => {
+          if (!user)
+            return;
+          navigation.navigate('Home', user);
+        })
         .catch(err => { console.log(err.message); })
     }
 

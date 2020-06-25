@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import Header from '../../components/Header';
 import BottomScreen from '../../components/BottomScreen';
 import ActionButton from '../../components/ActionButton';
+import SocialMediaButtonsLogin from '../../components/SocialMediaButtonsLogin';
 
 import { login } from '../../controllers/LoginController';
 import { save, load } from '../../controllers/StorageController';
@@ -20,7 +21,9 @@ export default function Login() {
   useEffect(() => {
     async function loadUser() {
       await load('userSession')
-        .then(user => { navigation.navigate('Home', user); })
+        .then(user => { 
+          //navigation.navigate('Home', user); 
+        })
         .catch(err => { console.log(err.message); })
     }
 
@@ -70,7 +73,11 @@ export default function Login() {
             Esqueceu sua senha?
           </Text>
         </TouchableOpacity>
+        
+        <SocialMediaButtonsLogin />
+
       </View>
+      
 
       <BottomScreen />
       <ActionButton handleButton={handleLogin} />

@@ -23,7 +23,7 @@ export default function Login() {
     async function loadUser() {
       await load('userSession')
         .then(user => { 
-          //navigation.navigate('Home', user); 
+          navigation.navigate('Home', user); 
         })
         .catch(err => { console.log(err.message); })
     }

@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import BottomScreen from '../../components/BottomScreen';
 import ActionButton from '../../components/ActionButton';
 import SocialMediaButtonsLogin from '../../components/SocialMediaButtonsLogin';
+import Divisor from '../../components/Divisor';
 
 import { login } from '../../controllers/LoginController';
 import { save, load } from '../../controllers/StorageController';
@@ -73,6 +74,8 @@ export default function Login() {
             Esqueceu sua senha?
           </Text>
         </TouchableOpacity>
+
+        <Divisor />
         
         <SocialMediaButtonsLogin />
 

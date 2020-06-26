@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WashApp</string>
+    <string name="facebook_app_id">307179880449587</string> 
+    <string name="fb_login_protocol_scheme">fb307179880449587</string>
 </resources>

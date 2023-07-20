@@ -1,1 +1,3 @@
 # WashApp
+
+A better README is coming...
